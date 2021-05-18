@@ -1,1 +1,41 @@
-verifier...
+<script>
+  const handlePresentationRequest = (url) => {
+    return () => {
+      console.log("handle selection: ", url);
+      window.open(url);
+    };
+  };
+
+  window.onload = () => {
+    const options = window.location.search
+      .split("?")[1]
+      .split("&")
+      .map((i) => {
+        return { [i.split("=")[0]]: i.split("=")[1] };
+      })
+      .reduce((options, i) => {
+        return { ...options, ...i };
+      });
+
+    if (options.presentation_request) {
+      document.getElementById("verifier").innerHTML = `
+      <h3>Verifier recieved presentation</h3>
+      <i>${options.wallet}</i> -> <b>${options.presentation_request}</b>
+      `;
+    }
+  };
+</script>
+
+<div id="verifier">
+  <h3>verifier requests presentation</h3>
+
+  <ul>
+    <li>
+      <button
+        onclick="handlePresentationRequest(window.origin +'/selector?verifier='+ window.origin + '/verifier&presentation_request=foobarbazz')()"
+      >
+        make presentation
+      </button>
+    </li>
+  </ul>
+</div>

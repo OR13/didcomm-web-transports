@@ -1,0 +1,24 @@
+<script>
+  const handleWalletChoice = (url) => {
+    return () => {
+      window.open(url + window.location.search);
+    };
+  };
+</script>
+
+<h3>select a wallet</h3>
+
+<div>
+  <ul>
+    <li>
+      <button onclick="handleWalletChoice(window.origin +'/wallet-0')()">
+        wallet 0
+      </button>
+    </li>
+    <li>
+      <button onclick="handleWalletChoice(window.origin +'/wallet-1')()">
+        wallet 1
+      </button>
+    </li>
+  </ul>
+</div>
