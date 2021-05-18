@@ -7,6 +7,12 @@
   };
 
   window.onload = () => {
+    const didcomm_protocol_handler = `web+didcomm:verifier=${window.origin}/verifier&presentation_request=foobarbazz`;
+    document.getElementById("didcomm_protocol_handler").href = didcomm_protocol_handler;
+
+    const didcomm_url = `${window.origin}/selector?verifier=${window.origin}/verifier&presentation_request=foobarbazz`;
+    document.getElementById("didcomm_url").href = didcomm_url;
+
     const options = window.location.search
       .split("?")[1]
       .split("&")
@@ -31,11 +37,11 @@
 
   <ul>
     <li>
-      <button
-        onclick="handlePresentationRequest(window.origin +'/selector?verifier='+ window.origin + '/verifier&presentation_request=foobarbazz')()"
-      >
-        make presentation
-      </button>
+      <a id="didcomm_url" href="" >Open DIDComm Wallet Selector via URL</button>
+    </li>
+
+    <li>
+      <a id="didcomm_protocol_handler" href="">Open DIDComm Wallet Selector via Protocol Handler</a>
     </li>
   </ul>
 </div>

@@ -1,7 +1,19 @@
 <script>
+  navigator.registerProtocolHandler(
+    "web+didcomm",
+    window.origin + "/selector?q=%s",
+    "DIDComm Wallet Selector"
+  );
+
   const handleWalletChoice = (url) => {
     return () => {
-      window.open(url + window.location.search);
+      window.open(
+        url +
+          decodeURIComponent(window.location.search).replace(
+            "q=web+didcomm:",
+            ""
+          )
+      );
     };
   };
 </script>
