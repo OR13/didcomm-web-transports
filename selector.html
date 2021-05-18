@@ -12,7 +12,8 @@
   const handleWalletChoice = (url) => {
     return () => {
       window.open(
-        url +
+        base +
+          url +
           decodeURIComponent(window.location.search).replace(
             "q=web+didcomm:",
             ""
@@ -27,14 +28,10 @@
 <div>
   <ul>
     <li>
-      <button onclick="handleWalletChoice(window.origin +'/wallet-0')()">
-        wallet 0
-      </button>
+      <button onclick="handleWalletChoice('/wallet-0')()">wallet 0</button>
     </li>
     <li>
-      <button onclick="handleWalletChoice(window.origin +'/wallet-1')()">
-        wallet 1
-      </button>
+      <button onclick="handleWalletChoice('/wallet-1')()">wallet 1</button>
     </li>
   </ul>
 </div>
