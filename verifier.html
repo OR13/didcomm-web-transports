@@ -1,4 +1,9 @@
 <script>
+
+const base = window.location.origin.includes("localhost")
+    ? "http://localhost:5000"
+    : "https://or13.github.io/didcomm-web-transports";
+
   const handlePresentationRequest = (url) => {
     return () => {
       console.log("handle selection: ", url);
@@ -7,10 +12,10 @@
   };
 
   window.onload = () => {
-    const didcomm_protocol_handler = `web+didcomm:verifier=${window.origin}/verifier&presentation_request=foobarbazz`;
+    const didcomm_protocol_handler = `web+didcomm:verifier=${base}/verifier&presentation_request=foobarbazz`;
     document.getElementById("didcomm_protocol_handler").href = didcomm_protocol_handler;
 
-    const didcomm_url = `${window.origin}/selector?verifier=${window.origin}/verifier&presentation_request=foobarbazz`;
+    const didcomm_url = `${base}/selector?verifier=${base}/verifier&presentation_request=foobarbazz`;
     document.getElementById("didcomm_url").href = didcomm_url;
 
     const options = window.location.search

@@ -1,7 +1,11 @@
 <script>
+  const base = window.location.origin.includes("localhost")
+    ? "http://localhost:5000"
+    : "https://or13.github.io/didcomm-web-transports";
+
   navigator.registerProtocolHandler(
     "web+didcomm",
-    window.origin + "/selector?q=%s",
+    base + "/selector?q=%s",
     "DIDComm Wallet Selector"
   );
 
